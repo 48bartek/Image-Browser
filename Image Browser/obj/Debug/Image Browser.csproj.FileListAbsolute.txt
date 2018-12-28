@@ -1,0 +1,9 @@
+C:\Users\Wojtas.B\Desktop\Repos\Image Browser\Image Browser\bin\Debug\Image Browser.exe.config
+C:\Users\Wojtas.B\Desktop\Repos\Image Browser\Image Browser\bin\Debug\Image Browser.exe
+C:\Users\Wojtas.B\Desktop\Repos\Image Browser\Image Browser\bin\Debug\Image Browser.pdb
+C:\Users\Wojtas.B\Desktop\Repos\Image Browser\Image Browser\obj\Debug\Image Browser.csprojResolveAssemblyReference.cache
+C:\Users\Wojtas.B\Desktop\Repos\Image Browser\Image Browser\obj\Debug\Image_Browser.Form1.resources
+C:\Users\Wojtas.B\Desktop\Repos\Image Browser\Image Browser\obj\Debug\Image_Browser.Properties.Resources.resources
+C:\Users\Wojtas.B\Desktop\Repos\Image Browser\Image Browser\obj\Debug\Image Browser.csproj.GenerateResource.Cache
+C:\Users\Wojtas.B\Desktop\Repos\Image Browser\Image Browser\obj\Debug\Image Browser.exe
+C:\Users\Wojtas.B\Desktop\Repos\Image Browser\Image Browser\obj\Debug\Image Browser.pdb
