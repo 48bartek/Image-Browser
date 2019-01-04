@@ -93,7 +93,7 @@ namespace Image_Browser
                 WebRequest request = WebRequest.Create(uri);
                 request.Timeout = 10000;
                 WebResponse response = request.GetResponse();
-                Regex regex = new Regex("http((.)\\S+?)((\\.jpg)|(\\.gif)|(\\.jpeg)|(\\.png))+?");
+                Regex regex = new Regex("http((.)\\S+?)((\\.jpg)|(\\.gif)|(\\.jpeg)|(\\.png))+?"); 
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
                     string result = reader.ReadToEnd();
@@ -149,17 +149,27 @@ namespace Image_Browser
             MessageBox.Show(filePath);
             webClient.DownloadFile(filesInLocation[index], filePath);
         }
+        private void ButtonTo_Click(object sender, EventArgs e)
+        {
+            if (FBDNewTreePathTo.ShowDialog() == DialogResult.OK)
+            {
+                TVTo.Nodes.Clear();
+                parentFolder = FBDNewTreePathTo.SelectedPath.ToString();
+                var rootDirectoryInfo = new DirectoryInfo(parentFolder);
+                TVTo.Nodes.Add(fillTree(rootDirectoryInfo));
+            }
+        }
 
         private TreeNode fillTree(DirectoryInfo directoryInfo)
         {
             var directoryNode = new TreeNode(directoryInfo.Name);
             foreach (var directory in directoryInfo.GetDirectories())
                 directoryNode.Nodes.Add(fillTree(directory));
-            foreach (var file in directoryInfo.GetFiles())
-            {
-                if(file.Name.EndsWith(".jpg") || file.Name.EndsWith(".jpeg") || file.Name.EndsWith(".gif") || file.Name.EndsWith(".png"))
-                    directoryNode.Nodes.Add(new TreeNode(file.Name));
-            }
+            //foreach (var file in directoryInfo.GetFiles())
+            //{
+            //    if(file.Name.EndsWith(".jpg") || file.Name.EndsWith(".jpeg") || file.Name.EndsWith(".gif") || file.Name.EndsWith(".png"))
+            //        directoryNode.Nodes.Add(new TreeNode(file.Name));
+            //}
             return directoryNode;
         }
         private void TVFrom_OnNodeDoubleClick(Object sender, TreeNodeMouseClickEventArgs e)
@@ -180,8 +190,23 @@ namespace Image_Browser
                 index = 0;
                 if (filesInLocation.Count != 0)
                 {
-                    UpdateMainImage(path);
-                    MessageBox.Show(path);
+                    UpdateMainImage(filesInLocation[0]);
+                }
+                papapanel.Controls.Clear();
+                PictureBox[] PB = new PictureBox[filesInLocation.Count];
+                for(int i = 0; i < PB.Length; i++)
+                {
+                    PB[i] = new PictureBox();
+                    PB[i].SizeMode = PictureBoxSizeMode.Zoom;
+                    int y = 10;
+                    int x = 10;
+                    y = 15 + 130 * (i / 3);
+                    x = 10 + 130 * (i % 3);
+                    PB[i].Location = new Point(x, y);
+                    PB[i].Size = new Size(125, 125);
+                    PB[i].ImageLocation = filesInLocation[i];
+                    PB[i].DoubleClick += miniature_DoubleClick;
+                    papapanel.Controls.Add(PB[i]);
                 }
             }
             else
@@ -196,8 +221,14 @@ namespace Image_Browser
                 { }
             }
             ClearNode(e.Node.TreeView.Nodes[0]);
-            TVFrom.SelectedNode.BackColor = System.Drawing.SystemColors.Highlight;
         }
+
+        private void miniature_DoubleClick(Object sender, EventArgs e)
+        {
+            UpdateMainImage((sender as PictureBox).ImageLocation);
+            index = filesInLocation.IndexOf((sender as PictureBox).ImageLocation.ToString());
+        }
+
         private void ClearNode(TreeNode tn)
         {
             tn.BackColor = SystemColors.Window;
@@ -218,5 +249,17 @@ namespace Image_Browser
             catch { }
         }
 
+        private void ButtonStart_Click(object sender, EventArgs e)
+        {
+            WebClient webClient = new WebClient();
+            for (int i = Int32.Parse(DUDLower.Text); i <= Int32.Parse(DUDUpper.Text); i++)
+            {
+                string filePath = "E:\\IBProba";
+                MessageBox.Show(filePath + "  " + i);
+                string adress = TBAdress1.Text + i + TBAdress2.Text;
+                webClient.DownloadFile(adress, filePath);
+            }
+        }
     }
 }
+
