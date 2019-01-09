@@ -44,20 +44,28 @@
             this.ButtonNext = new System.Windows.Forms.Button();
             this.ButtonPrev = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ButtonStart = new System.Windows.Forms.Button();
+            this.TBAdress2 = new System.Windows.Forms.TextBox();
+            this.TBAdress1 = new System.Windows.Forms.TextBox();
             this.FBDNewTreePath = new System.Windows.Forms.FolderBrowserDialog();
             this.FBDNewTreePathTo = new System.Windows.Forms.FolderBrowserDialog();
-            this.DUDLower = new System.Windows.Forms.DomainUpDown();
-            this.DUDUpper = new System.Windows.Forms.DomainUpDown();
-            this.DUDMargin = new System.Windows.Forms.DomainUpDown();
-            this.TBAdress1 = new System.Windows.Forms.TextBox();
-            this.L1 = new System.Windows.Forms.Label();
-            this.TBAdress2 = new System.Windows.Forms.TextBox();
-            this.ButtonStart = new System.Windows.Forms.Button();
+            this.UDLower = new System.Windows.Forms.NumericUpDown();
+            this.UDUpper = new System.Windows.Forms.NumericUpDown();
+            this.UDMargin = new System.Windows.Forms.NumericUpDown();
+            this.LLowerMargin = new System.Windows.Forms.Label();
+            this.LUpperMargin = new System.Windows.Forms.Label();
+            this.LError = new System.Windows.Forms.Label();
+            this.PBCurrentDownload = new System.Windows.Forms.PictureBox();
+            this.RTBReport = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.GBFrom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBCurrent)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UDLower)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDUpper)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDMargin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBCurrentDownload)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -213,13 +221,17 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.RTBReport);
+            this.tabPage2.Controls.Add(this.PBCurrentDownload);
+            this.tabPage2.Controls.Add(this.LError);
+            this.tabPage2.Controls.Add(this.LUpperMargin);
+            this.tabPage2.Controls.Add(this.LLowerMargin);
+            this.tabPage2.Controls.Add(this.UDMargin);
+            this.tabPage2.Controls.Add(this.UDUpper);
+            this.tabPage2.Controls.Add(this.UDLower);
             this.tabPage2.Controls.Add(this.ButtonStart);
             this.tabPage2.Controls.Add(this.TBAdress2);
-            this.tabPage2.Controls.Add(this.L1);
             this.tabPage2.Controls.Add(this.TBAdress1);
-            this.tabPage2.Controls.Add(this.DUDMargin);
-            this.tabPage2.Controls.Add(this.DUDUpper);
-            this.tabPage2.Controls.Add(this.DUDLower);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -228,29 +240,22 @@
             this.tabPage2.Text = "Get Images";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // DUDLower
+            // ButtonStart
             // 
-            this.DUDLower.Location = new System.Drawing.Point(56, 77);
-            this.DUDLower.Name = "DUDLower";
-            this.DUDLower.Size = new System.Drawing.Size(120, 20);
-            this.DUDLower.TabIndex = 0;
-            this.DUDLower.Text = "Lower limit";
+            this.ButtonStart.Location = new System.Drawing.Point(239, 220);
+            this.ButtonStart.Name = "ButtonStart";
+            this.ButtonStart.Size = new System.Drawing.Size(75, 23);
+            this.ButtonStart.TabIndex = 6;
+            this.ButtonStart.Text = "Start";
+            this.ButtonStart.UseVisualStyleBackColor = true;
+            this.ButtonStart.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
-            // DUDUpper
+            // TBAdress2
             // 
-            this.DUDUpper.Location = new System.Drawing.Point(194, 77);
-            this.DUDUpper.Name = "DUDUpper";
-            this.DUDUpper.Size = new System.Drawing.Size(120, 20);
-            this.DUDUpper.TabIndex = 1;
-            this.DUDUpper.Text = "Upper limit";
-            // 
-            // DUDMargin
-            // 
-            this.DUDMargin.Location = new System.Drawing.Point(334, 77);
-            this.DUDMargin.Name = "DUDMargin";
-            this.DUDMargin.Size = new System.Drawing.Size(120, 20);
-            this.DUDMargin.TabIndex = 2;
-            this.DUDMargin.Text = "Margin";
+            this.TBAdress2.Location = new System.Drawing.Point(460, 160);
+            this.TBAdress2.Name = "TBAdress2";
+            this.TBAdress2.Size = new System.Drawing.Size(133, 20);
+            this.TBAdress2.TabIndex = 5;
             // 
             // TBAdress1
             // 
@@ -259,31 +264,69 @@
             this.TBAdress1.Size = new System.Drawing.Size(398, 20);
             this.TBAdress1.TabIndex = 3;
             // 
-            // L1
+            // UDLower
             // 
-            this.L1.AutoSize = true;
-            this.L1.Location = new System.Drawing.Point(460, 163);
-            this.L1.Name = "L1";
-            this.L1.Size = new System.Drawing.Size(39, 13);
-            this.L1.TabIndex = 4;
-            this.L1.Text = "Margin";
+            this.UDLower.Location = new System.Drawing.Point(56, 103);
+            this.UDLower.Name = "UDLower";
+            this.UDLower.Size = new System.Drawing.Size(120, 20);
+            this.UDLower.TabIndex = 7;
             // 
-            // TBAdress2
+            // UDUpper
             // 
-            this.TBAdress2.Location = new System.Drawing.Point(496, 160);
-            this.TBAdress2.Name = "TBAdress2";
-            this.TBAdress2.Size = new System.Drawing.Size(133, 20);
-            this.TBAdress2.TabIndex = 5;
+            this.UDUpper.Location = new System.Drawing.Point(194, 103);
+            this.UDUpper.Name = "UDUpper";
+            this.UDUpper.Size = new System.Drawing.Size(120, 20);
+            this.UDUpper.TabIndex = 8;
             // 
-            // ButtonStart
+            // UDMargin
             // 
-            this.ButtonStart.Location = new System.Drawing.Point(239, 230);
-            this.ButtonStart.Name = "ButtonStart";
-            this.ButtonStart.Size = new System.Drawing.Size(75, 23);
-            this.ButtonStart.TabIndex = 6;
-            this.ButtonStart.Text = "Start";
-            this.ButtonStart.UseVisualStyleBackColor = true;
-            this.ButtonStart.Click += new System.EventHandler(this.ButtonStart_Click);
+            this.UDMargin.Location = new System.Drawing.Point(334, 103);
+            this.UDMargin.Name = "UDMargin";
+            this.UDMargin.Size = new System.Drawing.Size(120, 20);
+            this.UDMargin.TabIndex = 9;
+            // 
+            // LLowerMargin
+            // 
+            this.LLowerMargin.AutoSize = true;
+            this.LLowerMargin.Location = new System.Drawing.Point(53, 87);
+            this.LLowerMargin.Name = "LLowerMargin";
+            this.LLowerMargin.Size = new System.Drawing.Size(73, 13);
+            this.LLowerMargin.TabIndex = 10;
+            this.LLowerMargin.Text = "Lower margin:";
+            // 
+            // LUpperMargin
+            // 
+            this.LUpperMargin.AutoSize = true;
+            this.LUpperMargin.Location = new System.Drawing.Point(191, 87);
+            this.LUpperMargin.Name = "LUpperMargin";
+            this.LUpperMargin.Size = new System.Drawing.Size(73, 13);
+            this.LUpperMargin.TabIndex = 11;
+            this.LUpperMargin.Text = "Upper margin:";
+            // 
+            // LError
+            // 
+            this.LError.AutoSize = true;
+            this.LError.Location = new System.Drawing.Point(331, 87);
+            this.LError.Name = "LError";
+            this.LError.Size = new System.Drawing.Size(32, 13);
+            this.LError.TabIndex = 12;
+            this.LError.Text = "Error:";
+            // 
+            // PBCurrentDownload
+            // 
+            this.PBCurrentDownload.Location = new System.Drawing.Point(717, 23);
+            this.PBCurrentDownload.Name = "PBCurrentDownload";
+            this.PBCurrentDownload.Size = new System.Drawing.Size(735, 881);
+            this.PBCurrentDownload.TabIndex = 13;
+            this.PBCurrentDownload.TabStop = false;
+            // 
+            // RTBReport
+            // 
+            this.RTBReport.Location = new System.Drawing.Point(26, 551);
+            this.RTBReport.Name = "RTBReport";
+            this.RTBReport.Size = new System.Drawing.Size(685, 353);
+            this.RTBReport.TabIndex = 14;
+            this.RTBReport.Text = "";
             // 
             // Form1
             // 
@@ -302,6 +345,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.PBCurrent)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UDLower)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDUpper)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDMargin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBCurrentDownload)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -326,13 +373,17 @@
         private System.Windows.Forms.FolderBrowserDialog FBDNewTreePathTo;
         private System.Windows.Forms.TreeView TVTo;
         public System.Windows.Forms.Panel papapanel;
-        private System.Windows.Forms.DomainUpDown DUDMargin;
-        private System.Windows.Forms.DomainUpDown DUDUpper;
-        private System.Windows.Forms.DomainUpDown DUDLower;
         private System.Windows.Forms.Button ButtonStart;
         private System.Windows.Forms.TextBox TBAdress2;
-        private System.Windows.Forms.Label L1;
         private System.Windows.Forms.TextBox TBAdress1;
+        private System.Windows.Forms.NumericUpDown UDMargin;
+        private System.Windows.Forms.NumericUpDown UDUpper;
+        private System.Windows.Forms.NumericUpDown UDLower;
+        private System.Windows.Forms.Label LLowerMargin;
+        private System.Windows.Forms.Label LError;
+        private System.Windows.Forms.Label LUpperMargin;
+        private System.Windows.Forms.PictureBox PBCurrentDownload;
+        private System.Windows.Forms.RichTextBox RTBReport;
     }
 }
 

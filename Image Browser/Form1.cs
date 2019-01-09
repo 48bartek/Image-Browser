@@ -252,13 +252,29 @@ namespace Image_Browser
         private void ButtonStart_Click(object sender, EventArgs e)
         {
             WebClient webClient = new WebClient();
-            for (int i = Int32.Parse(DUDLower.Text); i <= Int32.Parse(DUDUpper.Text); i++)
+            int licznik = 0;
+            int i = (int) UDLower.Value;
+            RTBReport.Text = "Process start";
+            string filePath = "E:\\IBProba\\";
+            DirectoryInfo di = Directory.CreateDirectory(filePath);
+            while (licznik < UDMargin.Value)
             {
-                string filePath = "E:\\IBProba";
-                MessageBox.Show(filePath + "  " + i);
-                string adress = TBAdress1.Text + i + TBAdress2.Text;
-                webClient.DownloadFile(adress, filePath);
+                string pictureAdress = TBAdress1.Text + i.ToString() + TBAdress2.Text;
+                string fileName = pictureAdress.Substring(pictureAdress.LastIndexOf("/"));
+                try
+                {
+                    webClient.DownloadFile(pictureAdress, filePath + fileName);
+                    RTBReport.Text += "\nImage " + fileName + " saved in " + filePath;
+                    licznik = 0;
+                }
+                catch
+                {
+                    licznik++;
+                    RTBReport.Text += "\nFailed to save picture (" + licznik + ")";
+                }
+                i++;
             }
+            RTBReport.Text += "\nDone!";
         }
     }
 }
