@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.ButtonSave = new System.Windows.Forms.Button();
             this.LabelFileName = new System.Windows.Forms.Label();
             this.ButtonGo = new System.Windows.Forms.Button();
@@ -44,28 +45,30 @@
             this.ButtonNext = new System.Windows.Forms.Button();
             this.ButtonPrev = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.RTBReport = new System.Windows.Forms.RichTextBox();
+            this.PBCurrentDownload = new System.Windows.Forms.PictureBox();
+            this.LError = new System.Windows.Forms.Label();
+            this.LUpperMargin = new System.Windows.Forms.Label();
+            this.LLowerMargin = new System.Windows.Forms.Label();
+            this.UDMargin = new System.Windows.Forms.NumericUpDown();
+            this.UDUpper = new System.Windows.Forms.NumericUpDown();
+            this.UDLower = new System.Windows.Forms.NumericUpDown();
             this.ButtonStart = new System.Windows.Forms.Button();
             this.TBAdress2 = new System.Windows.Forms.TextBox();
             this.TBAdress1 = new System.Windows.Forms.TextBox();
             this.FBDNewTreePath = new System.Windows.Forms.FolderBrowserDialog();
             this.FBDNewTreePathTo = new System.Windows.Forms.FolderBrowserDialog();
-            this.UDLower = new System.Windows.Forms.NumericUpDown();
-            this.UDUpper = new System.Windows.Forms.NumericUpDown();
-            this.UDMargin = new System.Windows.Forms.NumericUpDown();
-            this.LLowerMargin = new System.Windows.Forms.Label();
-            this.LUpperMargin = new System.Windows.Forms.Label();
-            this.LError = new System.Windows.Forms.Label();
-            this.PBCurrentDownload = new System.Windows.Forms.PictureBox();
-            this.RTBReport = new System.Windows.Forms.RichTextBox();
+            this.ButtonMoveFile = new System.Windows.Forms.Button();
+            this.ButtonRotate = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.GBFrom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBCurrent)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UDLower)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UDUpper)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UDMargin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBCurrentDownload)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDMargin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDUpper)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDLower)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -80,6 +83,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.ButtonRotate);
+            this.tabPage1.Controls.Add(this.ButtonMoveFile);
+            this.tabPage1.Controls.Add(this.DeleteButton);
             this.tabPage1.Controls.Add(this.ButtonSave);
             this.tabPage1.Controls.Add(this.LabelFileName);
             this.tabPage1.Controls.Add(this.ButtonGo);
@@ -95,6 +101,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Preview Images";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(787, 851);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(67, 75);
+            this.DeleteButton.TabIndex = 15;
+            this.DeleteButton.Text = "Delete";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // ButtonSave
             // 
@@ -240,6 +256,70 @@
             this.tabPage2.Text = "Get Images";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // RTBReport
+            // 
+            this.RTBReport.Location = new System.Drawing.Point(26, 551);
+            this.RTBReport.Name = "RTBReport";
+            this.RTBReport.Size = new System.Drawing.Size(685, 353);
+            this.RTBReport.TabIndex = 14;
+            this.RTBReport.Text = "";
+            // 
+            // PBCurrentDownload
+            // 
+            this.PBCurrentDownload.Location = new System.Drawing.Point(717, 23);
+            this.PBCurrentDownload.Name = "PBCurrentDownload";
+            this.PBCurrentDownload.Size = new System.Drawing.Size(735, 881);
+            this.PBCurrentDownload.TabIndex = 13;
+            this.PBCurrentDownload.TabStop = false;
+            // 
+            // LError
+            // 
+            this.LError.AutoSize = true;
+            this.LError.Location = new System.Drawing.Point(331, 87);
+            this.LError.Name = "LError";
+            this.LError.Size = new System.Drawing.Size(32, 13);
+            this.LError.TabIndex = 12;
+            this.LError.Text = "Error:";
+            // 
+            // LUpperMargin
+            // 
+            this.LUpperMargin.AutoSize = true;
+            this.LUpperMargin.Location = new System.Drawing.Point(191, 87);
+            this.LUpperMargin.Name = "LUpperMargin";
+            this.LUpperMargin.Size = new System.Drawing.Size(73, 13);
+            this.LUpperMargin.TabIndex = 11;
+            this.LUpperMargin.Text = "Upper margin:";
+            // 
+            // LLowerMargin
+            // 
+            this.LLowerMargin.AutoSize = true;
+            this.LLowerMargin.Location = new System.Drawing.Point(53, 87);
+            this.LLowerMargin.Name = "LLowerMargin";
+            this.LLowerMargin.Size = new System.Drawing.Size(73, 13);
+            this.LLowerMargin.TabIndex = 10;
+            this.LLowerMargin.Text = "Lower margin:";
+            // 
+            // UDMargin
+            // 
+            this.UDMargin.Location = new System.Drawing.Point(334, 103);
+            this.UDMargin.Name = "UDMargin";
+            this.UDMargin.Size = new System.Drawing.Size(120, 20);
+            this.UDMargin.TabIndex = 9;
+            // 
+            // UDUpper
+            // 
+            this.UDUpper.Location = new System.Drawing.Point(194, 103);
+            this.UDUpper.Name = "UDUpper";
+            this.UDUpper.Size = new System.Drawing.Size(120, 20);
+            this.UDUpper.TabIndex = 8;
+            // 
+            // UDLower
+            // 
+            this.UDLower.Location = new System.Drawing.Point(56, 103);
+            this.UDLower.Name = "UDLower";
+            this.UDLower.Size = new System.Drawing.Size(120, 20);
+            this.UDLower.TabIndex = 7;
+            // 
             // ButtonStart
             // 
             this.ButtonStart.Location = new System.Drawing.Point(239, 220);
@@ -264,69 +344,25 @@
             this.TBAdress1.Size = new System.Drawing.Size(398, 20);
             this.TBAdress1.TabIndex = 3;
             // 
-            // UDLower
+            // ButtonMoveFile
             // 
-            this.UDLower.Location = new System.Drawing.Point(56, 103);
-            this.UDLower.Name = "UDLower";
-            this.UDLower.Size = new System.Drawing.Size(120, 20);
-            this.UDLower.TabIndex = 7;
+            this.ButtonMoveFile.Location = new System.Drawing.Point(787, 430);
+            this.ButtonMoveFile.Name = "ButtonMoveFile";
+            this.ButtonMoveFile.Size = new System.Drawing.Size(67, 75);
+            this.ButtonMoveFile.TabIndex = 13;
+            this.ButtonMoveFile.Text = "Move File";
+            this.ButtonMoveFile.UseVisualStyleBackColor = true;
+            this.ButtonMoveFile.Click += new System.EventHandler(this.ButtonMoveFile_Click);
             // 
-            // UDUpper
+            // ButtonRotate
             // 
-            this.UDUpper.Location = new System.Drawing.Point(194, 103);
-            this.UDUpper.Name = "UDUpper";
-            this.UDUpper.Size = new System.Drawing.Size(120, 20);
-            this.UDUpper.TabIndex = 8;
-            // 
-            // UDMargin
-            // 
-            this.UDMargin.Location = new System.Drawing.Point(334, 103);
-            this.UDMargin.Name = "UDMargin";
-            this.UDMargin.Size = new System.Drawing.Size(120, 20);
-            this.UDMargin.TabIndex = 9;
-            // 
-            // LLowerMargin
-            // 
-            this.LLowerMargin.AutoSize = true;
-            this.LLowerMargin.Location = new System.Drawing.Point(53, 87);
-            this.LLowerMargin.Name = "LLowerMargin";
-            this.LLowerMargin.Size = new System.Drawing.Size(73, 13);
-            this.LLowerMargin.TabIndex = 10;
-            this.LLowerMargin.Text = "Lower margin:";
-            // 
-            // LUpperMargin
-            // 
-            this.LUpperMargin.AutoSize = true;
-            this.LUpperMargin.Location = new System.Drawing.Point(191, 87);
-            this.LUpperMargin.Name = "LUpperMargin";
-            this.LUpperMargin.Size = new System.Drawing.Size(73, 13);
-            this.LUpperMargin.TabIndex = 11;
-            this.LUpperMargin.Text = "Upper margin:";
-            // 
-            // LError
-            // 
-            this.LError.AutoSize = true;
-            this.LError.Location = new System.Drawing.Point(331, 87);
-            this.LError.Name = "LError";
-            this.LError.Size = new System.Drawing.Size(32, 13);
-            this.LError.TabIndex = 12;
-            this.LError.Text = "Error:";
-            // 
-            // PBCurrentDownload
-            // 
-            this.PBCurrentDownload.Location = new System.Drawing.Point(717, 23);
-            this.PBCurrentDownload.Name = "PBCurrentDownload";
-            this.PBCurrentDownload.Size = new System.Drawing.Size(735, 881);
-            this.PBCurrentDownload.TabIndex = 13;
-            this.PBCurrentDownload.TabStop = false;
-            // 
-            // RTBReport
-            // 
-            this.RTBReport.Location = new System.Drawing.Point(26, 551);
-            this.RTBReport.Name = "RTBReport";
-            this.RTBReport.Size = new System.Drawing.Size(685, 353);
-            this.RTBReport.TabIndex = 14;
-            this.RTBReport.Text = "";
+            this.ButtonRotate.Location = new System.Drawing.Point(787, 511);
+            this.ButtonRotate.Name = "ButtonRotate";
+            this.ButtonRotate.Size = new System.Drawing.Size(67, 75);
+            this.ButtonRotate.TabIndex = 16;
+            this.ButtonRotate.Text = "Rotate";
+            this.ButtonRotate.UseVisualStyleBackColor = true;
+            this.ButtonRotate.Click += new System.EventHandler(this.ButtonRotate_Click);
             // 
             // Form1
             // 
@@ -345,10 +381,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.PBCurrent)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UDLower)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UDUpper)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UDMargin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBCurrentDownload)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDMargin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDUpper)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UDLower)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -384,6 +420,9 @@
         private System.Windows.Forms.Label LUpperMargin;
         private System.Windows.Forms.PictureBox PBCurrentDownload;
         private System.Windows.Forms.RichTextBox RTBReport;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button ButtonMoveFile;
+        private System.Windows.Forms.Button ButtonRotate;
     }
 }
 

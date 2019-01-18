@@ -21,6 +21,7 @@ namespace Image_Browser
         string path = "C:\\BIOS";
         int index = 0;
         string parentFolder = "";
+        string pathTo = "";
         public Form1()
         {
             InitializeComponent();
@@ -55,7 +56,7 @@ namespace Image_Browser
             LabelFileName.Text = "";
             try
             {
-                PBCurrent.Image = Image.FromFile(p);
+                PBCurrent.ImageLocation = p;
                 LabelFileName.Text = p.Substring(p.LastIndexOf("\\") + 1);
             }
             catch (NotSupportedException ex)
@@ -136,7 +137,6 @@ namespace Image_Browser
         {
             if (FBDNewTreePath.ShowDialog() == DialogResult.OK)
             {
-                TVFrom.Nodes.Clear();
                 parentFolder = FBDNewTreePath.SelectedPath.ToString();
                 var rootDirectoryInfo = new DirectoryInfo(parentFolder);
                 TVFrom.Nodes.Add(fillTree(rootDirectoryInfo));
@@ -157,19 +157,16 @@ namespace Image_Browser
                 parentFolder = FBDNewTreePathTo.SelectedPath.ToString();
                 var rootDirectoryInfo = new DirectoryInfo(parentFolder);
                 TVTo.Nodes.Add(fillTree(rootDirectoryInfo));
+                pathTo = FBDNewTreePathTo.SelectedPath;
             }
         }
 
         private TreeNode fillTree(DirectoryInfo directoryInfo)
         {
+            TVFrom.Nodes.Clear();
             var directoryNode = new TreeNode(directoryInfo.Name);
             foreach (var directory in directoryInfo.GetDirectories())
                 directoryNode.Nodes.Add(fillTree(directory));
-            //foreach (var file in directoryInfo.GetFiles())
-            //{
-            //    if(file.Name.EndsWith(".jpg") || file.Name.EndsWith(".jpeg") || file.Name.EndsWith(".gif") || file.Name.EndsWith(".png"))
-            //        directoryNode.Nodes.Add(new TreeNode(file.Name));
-            //}
             return directoryNode;
         }
         private void TVFrom_OnNodeDoubleClick(Object sender, TreeNodeMouseClickEventArgs e)
@@ -276,6 +273,36 @@ namespace Image_Browser
             }
             RTBReport.Text += "\nDone!";
         }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if(File.Exists(PBCurrent.ImageLocation))
+            {
+                File.Delete(PBCurrent.ImageLocation);
+                var rootDirectoryInfo = new DirectoryInfo(parentFolder);
+                TVFrom.Nodes.Add(fillTree(rootDirectoryInfo));
+            }
+        }
+
+        private void ButtonMoveFile_Click(object sender, EventArgs e)
+        {
+            if(File.Exists(PBCurrent.ImageLocation))
+            {
+                try
+                {
+                    //File.Move(PBCurrent.ImageLocation, pathTo + PBCurrent.ImageLocation.Substring(PBCurrent.ImageLocation.LastIndexOf('\\')));
+                    File.Copy(PBCurrent.ImageLocation, pathTo + PBCurrent.ImageLocation.Substring(PBCurrent.ImageLocation.LastIndexOf('\\')));
+                }
+                catch
+                { }
+            }
+        }
+
+        private void ButtonRotate_Click(object sender, EventArgs e)
+        {
+            var image = PBCurrent.Image;
+            image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            PBCurrent.Image = image;
+        }
     }
 }
-
